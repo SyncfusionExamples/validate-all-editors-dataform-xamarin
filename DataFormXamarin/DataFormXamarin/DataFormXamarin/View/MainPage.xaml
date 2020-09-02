@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataFormXamarin"
+             xmlns:dataForm="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
+             x:Class="DataFormXamarin.MainPage">
+  
+    <ContentPage.BindingContext>
+        <local:DataFormViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.9*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <dataForm:SfDataForm x:Name="dataForm" DataObject="{Binding LoginInfo}" Grid.Row="0" ValidationMode="LostFocus" CommitMode="LostFocus"/>
+        <Button x:Name="validateButton" Grid.Row="1"  Text="Submit" 
+                  Command="{Binding Path=BindingContext.ValidateCommand, Source={x:Reference Name=dataForm}}"                   
+                                                CommandParameter="{Binding Source={x:Reference Name=dataForm}}"/>
+    </Grid>
+</ContentPage>
